@@ -1,0 +1,65 @@
+﻿@page
+@model IndexModel
+
+<div class="content__wrapper--lg page__payment">
+
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["View Statement"]</h2>
+
+    <form method="post">
+
+        <div class="input__wrapper--md">
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <div class="select-wrapper">
+                        <select class="form-control form-control--custom"
+                                asp-for="LoanStatements.LoanId"
+                                asp-items="Model.LoanStatements.Loans"
+                                submit></select>
+                    </div>
+                    <label class="label--top" asp-for="LoanStatements.LoanId">@Localizer["Loan Number"]</label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="table-responsive table-wrapper custom-scroll">
+        <table class="table table--custom table__head--fixed table__row--slim  rounded-corners js-dt-table">
+            <thead>
+                <tr>
+                    <th>@Localizer["Statement Date"]</th>
+                    <th>@Localizer["Due Date"]</th>
+                    <th class="text-right">@Localizer["Past Due Balance"]</th>
+                    <th class="text-right">@Localizer["Current Balance"]</th>
+                    <th class="text-right">@Localizer["Current Payoff"]</th>
+                    <th>@Localizer["Document ID"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var index = 0; index < Model.LoanStatements.LoanStatements.Count; index++)
+                {
+                    var statement = Model.LoanStatements.LoanStatements[index];
+                    var statementClass = index.Even() ? "_even" : string.Empty;
+
+                        <tr class="@statementClass">
+                            <td>@statement.StatementDate.ToShortDate()</td>
+                            <td>@statement.StatementDueDate.ToShortDate()</td>
+                            <td class="text-right"><price value="statement.PastDueBalance"></price></td>
+                            <td class="text-right"><price value="statement.CurrentBalance"></price></td>
+                            <td class="text-right"><price value="statement.CurrentPayoff"></price></td>
+                            <td>
+                                <a asp-page="/Statement/Details/Index"
+                                   asp-route-documentId="@statement.DocumentId"
+                                   class="table__text--accent"
+                                   rel="noopener noreferrer"
+                                   target="_blank">@statement.DocumentId</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+    </div>
+</div>

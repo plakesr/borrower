@@ -1,0 +1,131 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <CodeAnalysisRuleSet>..\Nortridge.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+    <TypeScriptToolsVersion>3.7</TypeScriptToolsVersion>
+	<Deterministic>False</Deterministic>
+	<AssemblyVersion>1.0.*</AssemblyVersion>
+	<FileVersion>1.0.*</FileVersion>
+	<UserSecretsId>7818aff3-abe0-4f30-b275-9937307b7e54</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="app\dist\**" />
+    <Compile Remove="logs\**" />
+    <Compile Remove="wwwroot\dist\**" />
+    <Content Remove="app\dist\**" />
+    <Content Remove="logs\**" />
+    <Content Remove="wwwroot\dist\**" />
+    <EmbeddedResource Remove="app\dist\**" />
+    <EmbeddedResource Remove="logs\**" />
+    <EmbeddedResource Remove="wwwroot\dist\**" />
+    <None Remove="app\dist\**" />
+    <None Remove="logs\**" />
+    <None Remove="wwwroot\dist\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="app\src\components\auto-numeric.ts" />
+    <None Remove="app\src\components\date-pickers.ts" />
+    <None Remove="app\src\components\dropdown.ts" />
+    <None Remove="app\src\components\forms.ts" />
+    <None Remove="app\src\components\radio.ts" />
+    <None Remove="app\src\main.ts" />
+    <None Remove="app\src\pages\submit-payment.ts" />
+    <None Remove="app\src\shared\price.ts" />
+    <None Remove="app\src\types\autonumeric.d.ts" />
+    <None Remove="app\src\validators\not-equal-to.validator.ts" />
+    <None Remove="app\src\validators\required-if-setup-item.validator.ts" />
+    <None Remove="app\src\validators\required-if-submit-payment-method.validator.ts" />
+    <None Remove="app\src\validators\validator.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="3.10.10" />
+    <PackageReference Include="LanguageExt.Core" Version="3.3.50" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="3.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="Nortridge.BorrowerPortal.Core" Version="1.0.0" />
+    <PackageReference Include="Nortridge.NlsWebApi.Client" Version="10.0.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="app\src\components\auto-numeric.ts" />
+    <TypeScriptCompile Include="app\src\components\date-pickers.ts" />
+    <TypeScriptCompile Include="app\src\components\forms.ts" />
+    <TypeScriptCompile Include="app\src\components\radio.ts" />
+    <TypeScriptCompile Include="app\src\components\dropdown.ts" />
+    <TypeScriptCompile Include="app\src\main.ts" />
+    <TypeScriptCompile Include="app\src\pages\submit-payment.ts" />
+    <TypeScriptCompile Include="app\src\shared\price.ts" />
+    <TypeScriptCompile Include="app\src\types\autonumeric.d.ts" />
+    <TypeScriptCompile Include="app\src\validators\not-equal-to.validator.ts" />
+    <TypeScriptCompile Include="app\src\validators\required-if-setup-item.validator.ts" />
+    <TypeScriptCompile Include="app\src\validators\required-if-submit-payment-method.validator.ts" />
+    <TypeScriptCompile Include="app\src\validators\validator.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="ReleaseRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Release'">
+        <!-- Ensure Node.js is installed -->
+        <Exec Command="node --version" ContinueOnError="true">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+        </Exec>
+        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+        <!-- In development, the dist files won't exist on the first run or when cloning to a different machine, so rebuild them if not already present. -->
+        <Message Importance="high" Text="Performing Webpack release build..." />
+        <Exec Command="npm run release" />
+    </Target>
+
+    <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish" Condition=" '$(Configuration)' == 'Release'">
+        <Exec Command="npm install" />
+        <Exec Command="npm run release" />
+        <ItemGroup>
+            <DistFiles Include="wwwroot\dist\**" />
+            <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>%(DistFiles.Identity)</RelativePath>
+                <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            </ResolvedFileToPublish>
+        </ItemGroup>
+    </Target>
+
+    <Target Name="CleanDistFiles" BeforeTargets="Clean" Condition=" '$(Configuration)' == 'Release'">
+        <ItemGroup>
+            <DistFiles Include="wwwroot\dist\**\*" />
+        </ItemGroup>
+        <Delete Files="@(DistFiles)" />
+        <RemoveDir Directories="wwwroot\dist\" />
+    </Target>
+  
+</Project>

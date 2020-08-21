@@ -1,0 +1,63 @@
+﻿@page
+@model IndexModel
+
+<div class="content__wrapper--lg page__payment">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Payment History"]</h2>
+
+    <div class="input__wrapper--md">
+
+        <form method="post">
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <div class="select-wrapper">
+                        <select class="form-control form-control--custom"
+                                asp-for="PaymentHistory.LoanId"
+                                asp-items="Model.PaymentHistory.Loans"
+                                submit>
+                        </select>
+                    </div>
+                    <label class="label--top">@Localizer["Loan Number"]</label>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="table-responsive table-wrapper custom-scroll">
+        <table class="page__payment__table table table--custom table__head--fixed table__row--slim  rounded-corners js-dt-table">
+            <thead>
+                <tr>
+                    <th>@Localizer["Date Paid"]</th>
+                    <th>@Localizer["Due Date"]</th>
+                    <th>@Localizer["Pmnt#"]</th>
+                    <th class="page__payment__table__type">@Localizer["Type"]</th>
+                    <th class="text-right">@Localizer["Payment Amount"]</th>
+                    <th class="text-right">@Localizer["Trans Code"]</th>
+                    <th>@Localizer["Payment Method"]</th>
+                    <th>@Localizer["Payment Method Ref"]</th>
+                </tr>
+            </thead>
+            @for (var index = 0; index < Model.PaymentHistory.Items.Count; index++)
+            {
+                var group = Model.PaymentHistory.Items[index];
+                var groupClass = index.Even() ? "_even" : string.Empty;
+
+                foreach (var item in group)
+                {
+                    <tr class="@groupClass">
+                        <td>@item.DatePaid.ToShortDate()</td>
+                        <td>@item.DueDate.ToShortDate()</td>
+                        <td>@item.PaymentNumber</td>
+                        <td>@item.Type</td>
+                        <td class="text-right"><price value="item.PaymentAmount"></price></td>
+                        <td class="text-right">@item.TransactionCode</td>
+                        <td>@item.PaymentMethod</td>
+                        <td>@item.PaymentMethodRef</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+
+<div class="content__wrapper--lg">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Change Password"]</h2>
+
+    <form class="form--flexible" method="post">
+
+        <div class="d-flex flex-wrap align-items-center mb-3">
+
+            <div class="content__wrapper--sm">
+                <div class="form__row--custom">
+                    <div class="form-group mb-0">
+                        <input class="form-control form-control--custom" asp-for="Form.CurrentPassword" />
+                        <label class="label--top" asp-for="Form.CurrentPassword">@Localizer["Current Password"]</label>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="Form.CurrentPassword" class="text-danger ml-3"></span>
+        </div>
+
+        <div class="d-flex flex-wrap align-items-center mb-3">
+
+            <div class="content__wrapper--sm">
+                <div class="form__row--custom">
+                    <div class="form-group mb-0">
+                        <input class="form-control form-control--custom" asp-for="Form.NewPassword" />
+                        <label class="label--top" asp-for="Form.NewPassword">@Localizer["New Password"]</label>
+                    </div>
+                </div>
+            </div>
+            <span class="ml-3">
+                @Localizer["Password must be 8 - 12 non-blank characters in length and contain at least one of the following: !@#$%^&*/"]
+            </span>
+        </div>
+
+
+        <div class="content__wrapper--sm">
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <input class="form-control form-control--custom" asp-for="Form.ConfirmPassword" />
+                    <label class="label--top" asp-for="Form.ConfirmPassword">@Localizer["Confirm Password"]</label>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn__solid mx-0 mt-2" type="submit">@Localizer["Change Password"]</button>
+    </form>
+</div>

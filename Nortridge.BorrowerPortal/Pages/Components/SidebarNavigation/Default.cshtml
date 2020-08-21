@@ -1,0 +1,15 @@
+﻿@model SidebarNavigationViewModel
+
+<ul class="sidebar__main">
+    @foreach (var item in Model.Items)
+    {
+        var activeClass = item == Model.ActiveItem ? "_active" : string.Empty;
+
+        <li class="sidebar-item">
+            <a class="sidebar-link @activeClass" asp-page="@item.Path">
+                <i class="sidebar__icon @item.Icon"></i>
+                @Localizer[item.Name]
+            </a>
+        </li>
+    }
+</ul>

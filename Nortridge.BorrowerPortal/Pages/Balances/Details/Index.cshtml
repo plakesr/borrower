@@ -1,0 +1,130 @@
+﻿@page "/Balances/{loanId:long}"
+@model Balances.Details.IndexModel
+
+<div class="content__wrapper--lg">
+    <vc:breadcrumb current="Model.CurrentLevel"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Balance Detail for Loan Number"] @Model.Loan.Number (@Model.Loan.Nickname)</h2>
+
+    <div class="balance-details">
+        <div class="balance-details__column">
+            <div>
+                <span>@Localizer["Open Date"]</span>
+                <span>@Model.Loan.OpenDate.ToShortDate()</span>
+            </div>
+            <div>
+                <span>@Localizer["Maturity Date"] </span>
+                <span>@Model.Loan.MaturityDate.ToShortDate()</span>
+            </div>
+            <div>
+                <span>@Localizer["Loan Amount"] </span>
+                <price value="Model.Loan.LoanAmount"></price>
+            </div>
+            <div>
+                <span>@Localizer["Balance as of"] </span>
+                <span>@Model.Loan.BalanceDate.ToShortDate()</span>
+            </div>
+            <div>
+                <span>@Localizer["Principal"] </span>
+                <price value="Model.Loan.Principal"></price>
+            </div>
+            <div>
+                <span>@Localizer["Interest"] </span>
+                <price value="Model.Loan.Interest"></price>
+            </div>
+            <div>
+                <span>@Localizer["Fees"] </span>
+                <price value="Model.Loan.Fees"></price>
+            </div>
+            <div>
+                <span> @Localizer["Late Charges"] </span>
+                <price value="Model.Loan.LateCharges"></price>
+            </div>
+            <div>
+                <span>@Localizer["Other Charges"] </span>
+                <price value="Model.Loan.OtherCharges"></price>
+            </div>
+            <div>
+                <span>@Localizer["Total Balance"] </span>
+                <price value="Model.Loan.TotalBalance"></price>
+            </div>
+            <div>
+                <span>@Localizer["Current Impound"] </span>
+                <price value="Model.Loan.CurrentImpound"></price>
+            </div>
+        </div>
+
+        <div class="balance-details__column">
+            <div>
+                <span>@Localizer["Interest Accrued Through"] </span>
+                <span>@Model.Loan.InterestAccruedThrough.ToShortDate()</span>
+            </div>
+            <div>
+                <span>@Localizer["Perdiem Interest"] </span>
+                <pricelong value="Model.Loan.PerdiemInterest"></pricelong>
+            </div>
+            <div class="blank-field"></div>
+            <div>
+                <span>@Localizer["Next Principal Billing"] </span>
+                <price value="Model.Loan.NextPrincipalBilling"></price>
+            </div>
+            <div>
+                <span>@Localizer["Next Interest Billing"] </span>
+                <price value="Model.Loan.NextInterestBilling"></price>
+            </div>
+            <div>
+                <span>@Localizer["Next Total Payment"] </span>
+                <price value="Model.Loan.NextTotalPayment"></price>
+            </div>
+            <div class="blank-field"></div>
+            <div>
+                <span> @Localizer["Next Total Billing"] </span>
+                <price value="Model.Loan.NextTotalBilling"></price>
+            </div>
+            <div>
+                <span>@Localizer["Last Payment"] </span>
+                <price value="Model.Loan.LastPayment"></price>
+            </div>
+            <div>
+                <span>@Localizer["Total Past Due"] </span>
+                <price value="Model.Loan.TotalPastDue"></price>
+            </div>
+            <div>
+                <span>@Localizer["Total Current Due"] </span>
+                <price value="Model.Loan.TotalCurrentDue"></price>
+            </div>
+        </div>
+
+        <div class="balance-details__column">
+            <div>
+                <span>@Localizer["Loan Type"] </span>
+                <span>@Model.Loan.LoanType</span>
+            </div>
+            <div>
+                <span>@Localizer["Current Rate"]</span>
+                <pricelong value="Model.Loan.CurrentRate"></pricelong>
+            </div>
+            <div class="blank-field"></div>
+            <div>
+                <span>@Localizer["Due Date"]</span>
+                <span>@Model.Loan.NextPrincipalBillingDueDate.ToShortDate()</span>
+            </div>
+            <div>
+                <span>@Localizer["Due Date"]</span>
+                <span>@Model.Loan.NextInterestBillingDueDate.ToShortDate()</span>
+            </div>
+            <div class="blank-field"></div>
+            <div class="blank-field"></div>
+            <div class="blank-field"></div>
+            <div>
+                <span>@Localizer["Received"]</span>
+                <span>@Model.Loan.LastPaymentReceivedDate.ToShortDate()</span>
+            </div>
+            <div>
+                <span>@Localizer["Days Past Due"]</span>
+                <span>@Model.Loan.DaysPastDue</span>
+            </div>
+        </div>
+    </div>
+
+</div>

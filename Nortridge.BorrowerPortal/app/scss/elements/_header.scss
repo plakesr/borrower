@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  font-family: $font-logo;
+  color: $header-text-col;
+  font-size: $font-md-size;
+
+  @media (min-width: $md) {
+    height: rem(56);
+  }
+
+  .header__name {
+    margin-left: rem(8);
+
+  }
+
+  &--entry {
+    margin-left: rem(8);
+    margin-right: rem(8);
+    background-color: $header-login-bg-col;
+
+    .header__name {
+      color: $header-login-text-col;
+    }
+
+    @media (max-width: $md) {
+      margin-top: rem(8);
+      margin-bottom: rem(8);
+    }
+  }
+
+  &--regular {
+    background-color: $header-regular-bg-col;
+    color: $header-regular-text-col;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    .header__name {
+      color: $header-text-col;
+    }
+  }
+
+}

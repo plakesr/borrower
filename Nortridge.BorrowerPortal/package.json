@@ -1,0 +1,53 @@
+{
+    "version": "1.0.0",
+    "name": "nls.borrower-portal",
+    "private": true,
+    "scripts": {
+        "debug": "webpack --env=development",
+        "watch": "webpack --env=development --watch",
+        "release": "webpack --env=production"
+    },
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.7.1",
+        "@types/bootstrap": "^4.3.1",
+        "@types/datatables.net": "^1.10.18",
+        "@types/jquery": "^3.3.31",
+        "@types/jquery-mask-plugin": "^1.14.3",
+        "@types/jquery-validation-unobtrusive": "^3.2.32",
+        "@types/jquery.validation": "^1.16.6",
+        "autoprefixer": "^9.4.6",
+        "css-loader": "^2.1.0",
+        "exports-loader": "^0.7.0",
+        "file-loader": "^3.0.1",
+        "mini-css-extract-plugin": "^0.5.0",
+        "moment-locales-webpack-plugin": "^1.1.2",
+        "node-sass": "^4.14.1",
+        "normalize.css": "^8.0.1",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "postcss-loader": "^3.0.0",
+        "precss": "^4.0.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "terser-webpack-plugin": "^2.3.2",
+        "ts-loader": "^6.2.1",
+        "tslint": "^6.0.0",
+        "typescript": "^3.7.5",
+        "typescript-tslint-plugin": "^0.5.5",
+        "webpack": "^4.41.5",
+        "webpack-cli": "^3.3.10",
+        "webpack-entry-plus": "^1.0.18",
+        "webpack-merge": "^4.2.2"
+    },
+    "dependencies": {
+        "autonumeric": "^4.5.10",
+        "bootstrap": "^4.4.1",
+        "datatables.net-bs4": "^1.10.20",
+        "jquery": "^3.5.1",
+        "jquery-mask-plugin": "^1.14.16",
+        "jquery-validation": "^1.19.1",
+        "jquery-validation-unobtrusive": "^3.2.11",
+        "moment": "^2.24.0",
+        "popper.js": "^1.16.1",
+        "tempusdominus-bootstrap-4": "^5.1.2"
+    }
+}

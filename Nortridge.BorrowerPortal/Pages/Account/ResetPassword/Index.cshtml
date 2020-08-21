@@ -1,0 +1,61 @@
+﻿@page
+﻿@using LanguageExt.UnsafeValueAccess
+@using Nortridge.BorrowerPortal.Core.Account
+@model IndexModel
+@{
+    Layout = PageContants.LayoutAnonymous;
+}
+
+<div class="form__wrapper__entry">
+    <h2 class="page__title">@Localizer["Reset Password"]</h2>
+
+    @if (Model.Error.IsSome)
+    {
+        var error = Model.Error.ValueUnsafe();
+
+        <div class="alert alert-warning mt-2">
+            @if (error.Type == AccountErrorType.NotSetup)
+            {
+                @Localizer["Account not setup, click "]
+                <a asp-page="/Account/Register/Index">@Localizer["here"]</a>
+                @Localizer[" to create account"]
+            }
+            else
+            {
+                @error.Message
+            }
+        </div>
+    }
+    else
+    {
+        <form method="post">
+
+            <div class="d-flex flex-wrap align-items-center mb-3">
+                <div class="content__wrapper--sm">
+                    <div class="form__row--custom">
+                        <div class="form-group mb-0">
+                            <input class="form-control form-control--custom" asp-for="Form.NewPassword" />
+                            <label class="label--top" asp-for="Form.NewPassword">@Localizer["New Password"]</label>
+                        </div>
+                    </div>
+                </div>
+                <span class="ml-3">
+                    @Localizer["Password must be 8 - 12 non-blank characters in length and contain at least one of the following: !@#$%^&*/"]
+                </span>
+            </div>
+
+            <div class="content__wrapper--sm">
+                <div class="form__row--custom">
+                    <div class="form-group">
+                        <input class="form-control form-control--custom" asp-for="Form.ConfirmPassword" />
+                        <label class="label--top" asp-for="Form.ConfirmPassword">@Localizer["Confirm Password"]</label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn__solid float-right m-0" type="submit">@Localizer["Submit"]</button>
+        </form>
+    }
+</div>
+
+<a asp-page="/Account/Login/Index" class="btn btn__text mt-2 ml-2">@Localizer["Back"]</a>

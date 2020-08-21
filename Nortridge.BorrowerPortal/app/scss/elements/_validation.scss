@@ -1,0 +1,17 @@
+.invalid-block {
+  color: $red-alert;
+}
+
+.input-validation-error {
+  border: 1px solid $red-alert !important;
+}
+
+.input-validation-error[type="radio"] {
+  + .cr {
+    border: 1px solid $red-alert !important;
+  }
+}
+
+span.cr {
+  border: 1px solid $red-alert;
+}

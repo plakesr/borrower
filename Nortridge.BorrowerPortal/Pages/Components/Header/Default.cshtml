@@ -1,0 +1,33 @@
+﻿@model HeaderViewModel
+
+<header class="header header--regular">
+    <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-dark p-0">
+
+        <a class="navbar--brand d-flex" asp-page="@Model.LogoPath">
+            <img class="header__logo" src="~/images/header-logo.svg" alt="">
+            <div class="header__name">COMPANY <br> NAME</div>
+        </a>
+
+        <button class="navbar-toggler m-2" type="button" data-toggle="collapse" data-target="#navbarHeaderNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse h-100 align-items-stretch" id="navbarHeaderNav">
+            <vc:top-navigation></vc:top-navigation>
+        </div>
+
+    </nav>
+    <div class="account__wrapper">
+        <span class="account__welcome">
+            @Localizer["Welcome"], &nbsp;
+            <span class="account__name">
+                @Model.UserName
+            </span>
+        </span>
+        <form asp-page="/Account/Logout" method="post">
+            <button class="btn btn__logout pr-0" type="submit">@Localizer["Logout"]</button>
+        </form>
+    </div>
+
+</header>

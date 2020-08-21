@@ -1,0 +1,60 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  height: rem(37);
+  margin-right: rem(8);
+  margin-left: rem(8);
+  color: $btn-solid-col;
+  font-size: $font-reg-size;
+  font-weight: 600;
+  border-radius: $border-rad-regular;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn__text {
+  align-self: flex-start;
+  margin: 0;
+
+  &:hover, &:focus {
+    background-color: $btn-bg-hover-col;
+    box-shadow: none;
+  }
+
+  &--link {
+    &:hover {
+      color: $btn-link-col;
+    }
+  }
+}
+
+.btn__text--small {
+  max-height: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.btn__solid {
+  align-self: flex-start;
+  background-color: $btn-bg-col;
+  color: $btn-text-col;
+  transition: box-shadow .3s;
+
+  &:hover {
+    color: $btn-text-col;
+    box-shadow: $btn-shadow;
+  }
+}
+
+.btn__logout {
+  color: $header-nav-col;
+  height: auto;
+  padding: initial;
+  line-height: initial;
+  margin-left: 0.5rem;
+
+  &:hover, &:focus {
+    color: $header-accent-col;
+  }
+}

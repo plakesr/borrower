@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = PageContants.LayoutAnonymous;
+}
+
+<div class="form__wrapper__entry">
+    @if (Model.UserRegistered)
+    {
+        <div class="alert alert-warning mt-2">@Localizer["Account has been set up successfully."]</div>
+    }
+    else if (Model.ForgotPasswordSent)
+    {
+        <div class="alert alert-warning mt-2">@Localizer["An email has been sent to the email address on file with direction on how to reset your password."]</div>
+    }
+
+    @if (Model.FormQuestion == null)
+    {
+        <partial name="_Login" model="Model.FormLogin" />
+    }
+    else
+    {
+        <partial name="_Question" model="Model.FormQuestion" />
+    }
+</div>
+
+@if (Model.FormQuestion == null)
+{
+    <a asp-page="/Account/Register/Index" class="btn btn__text mt-2 ml-2">@Localizer["Register new account"]</a>
+}

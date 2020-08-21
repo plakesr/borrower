@@ -1,0 +1,21 @@
+﻿@page "{status?}"
+@model ErrorModel
+
+@{
+    Layout = "_LayoutError";
+}
+
+<div class="container error-page">
+    <div class="row justify-content-center">
+        <h4>@Localizer["An Unexpected Error has Occurred"]</h4>
+    </div>
+    <div class="row justify-content-center">
+        <p class="msg">Error code: @Model.Status</p>
+    </div>
+    <div class="row justify-content-center">
+        <p>@Model.Description</p>
+    </div>
+    <div class="row justify-content-end">
+        <a asp-page="/Index">@Localizer["Go to home page"]</a>
+    </div>
+</div>

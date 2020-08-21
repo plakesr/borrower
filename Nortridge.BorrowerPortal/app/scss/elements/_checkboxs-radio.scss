@@ -1,0 +1,153 @@
+.checkbox {
+  display: inline-block;
+}
+
+.checkbox .cr {
+  position: relative;
+  border-radius: rem(2);
+  background-color: $check-bg-col;
+  transition: all 0.25s ease;
+}
+
+.checkbox .cr .cr-icon {
+  position: absolute;
+  font-size: rem(16);
+  display: inline-block;
+  left: 50%;
+  top: 6%;
+  transform: translateX(-50%);
+  color: $check-text-col;
+  transition: all 0.25s ease;
+}
+
+.checkbox label:after,
+.radio label:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.checkbox .cr,
+.radio .cr {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: rem(18);
+  height: rem(18);
+  margin-right: 0.5em;
+  border: 2px solid $input-border-col;
+  border-radius: 0.25em;
+  transition: $transition-regular;
+}
+
+.radio {
+  display: inline-flex;
+  height: 100%;
+
+  .col-form-label {
+    height: 100%;
+
+    .cr {
+      position: relative;
+      border-radius: 50%;
+    }
+  }
+}
+
+.radio .cr .cr-icon {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: $check-checked-bg-col;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: $transition-regular;
+}
+
+.radio .col-form-label {
+  display: flex;
+  align-items: center;
+}
+
+.radio-table {
+  display: flex;
+  justify-content: center;
+
+  .cr {
+    margin: 0;
+    .cr-icon {
+      top: 50%;
+      margin-left: 0;
+    }
+  }
+}
+
+.checkbox-table {
+  display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr {
+  background-color: $check-checked-bg-col;
+  border: none;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+
+  &:focus + .cr {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+  opacity: 0;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+  opacity: 1;
+}
+
+.radio label input[type="radio"]:checked + .cr {
+  border-color: $check-checked-bg-col;
+
+  & > .cr-icon {
+    opacity: 1;
+  }
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+  opacity: 0.5;
+}
+
+.checkbox-table {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  .cr {
+    margin: 0;
+  }
+}
+
+// input[type="checkbox"]:disabled {
+//   & ~ span {
+//     // color: $text-grey-placeholder;
+//   }
+// }
+
+.checkbox-text {
+  line-height: rem(14);
+  margin-right: rem(4);
+}

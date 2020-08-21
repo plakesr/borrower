@@ -1,0 +1,12 @@
+﻿@model TopNavigationViewModel
+
+<ul class="navbar-nav">
+    @foreach (var item in Model.Items)
+    {
+        var activeClass = item == Model.ActiveItem ? "_active" : string.Empty;
+
+        <li class="nav-item">
+            <a class="nav-link @activeClass" asp-page="@item.Path">@Localizer[item.Name]</a>
+        </li>
+    }
+</ul>

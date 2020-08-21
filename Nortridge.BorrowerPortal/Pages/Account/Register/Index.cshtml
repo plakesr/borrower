@@ -1,0 +1,115 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = PageContants.LayoutAnonymous;
+}
+
+<div class="form__wrapper__entry">
+
+    <h2 class="page__title">@Localizer["New User Account"]</h2>
+
+    <form method="post">
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input asp-for="Form.Username" class="form-control form-control--custom" />
+                <label asp-for="Form.Username" class="label--top">@Localizer["Username"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input asp-for="Form.Password" class="form-control form-control--custom" />
+                <label asp-for="Form.Password" class="label--top">@Localizer["Password"]</label>
+            </div>
+            <div class="form-group">
+                <input asp-for="Form.ConfirmPassword" class="form-control form-control--custom" />
+                <label asp-for="Form.ConfirmPassword" class="label--top">@Localizer["Confirm Password"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <div class="select-wrapper">
+                    <select class="form-control form-control--custom" asp-for="Form.SecurityQuestion1"
+                            asp-items="Model.Form.SecurityQuestion1List"></select>
+                </div>
+                <label asp-for="Form.SecurityQuestion1" class="label--top">@Localizer["Security Question 1"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input asp-for="Form.SecurityQuestion1Answer" class="form-control form-control--custom" />
+                <label asp-for="Form.SecurityQuestion1Answer" class="label--top">@Localizer["Answer 1"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <div class="select-wrapper">
+                    <select class="form-control form-control--custom" asp-for="Form.SecurityQuestion2"
+                            asp-items="Model.Form.SecurityQuestion2List"></select>
+                </div>
+                <label asp-for="Form.SecurityQuestion2" class="label--top">@Localizer["Security Question 2"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group mb-1">
+                <input asp-for="Form.SecurityQuestion2Answer" class="form-control form-control--custom" />
+                <label asp-for="Form.SecurityQuestion2Answer" class="label--top">@Localizer["Answer 2"]</label>
+            </div>
+        </div>
+
+        <hr />
+
+        <p class="text--help">@Localizer["Enter the following data as it appears on your statement"]</p>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input asp-for="Form.FirstName" class="form-control form-control--custom" />
+                <label asp-for="Form.FirstName" class="label--top">@Localizer["First Name"]</label>
+            </div>
+            <div class="form-group">
+                <input asp-for="Form.LastName" class="form-control form-control--custom" />
+                <label asp-for="Form.LastName" class="label--top">@Localizer["Last Name"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input asp-for="Form.Email" class="form-control form-control--custom" />
+                <label asp-for="Form.Email" class="label--top">@Localizer["Email"]</label>
+            </div>
+            <div class="form-group">
+                <date for="Form.DateOfBirth"></date>
+                <label class="label--top" asp-for="Form.DateOfBirth">
+                    @Localizer["Date of Birth"]
+                </label>
+            </div>
+        </div>
+
+        <div class="checkbox d-block mt-2">
+            <label class="m-0">
+                <input type="checkbox" asp-for="Form.AlwaysTrustThisComputer" />
+                <span class="cr">
+                    <i class="cr-icon icon-check"></i>
+                </span>
+                <span>@Localizer["Always trust this computer when logging in"]</span>
+            </label>
+        </div>
+
+        @if (Model.RecordLocked)
+        {
+            <vc:record-locked></vc:record-locked>
+        }
+        else
+        {
+            <div asp-validation-summary="ModelOnly" class="text--error register"></div>
+        }
+
+        <button class="btn btn__solid float-right  mt-2" type="submit">@Localizer["Register"]</button>
+    </form>
+</div>
+
+<a asp-page="/Account/Login/Index" class="btn btn__text mt-2 ml-2">@Localizer["Back"]</a>

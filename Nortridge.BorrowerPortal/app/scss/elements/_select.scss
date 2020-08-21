@@ -1,0 +1,24 @@
+.select-wrapper {
+  position: relative;
+
+  &:before {
+    content: "\e908";
+    font-family: "icomoon";
+    position: absolute;
+    color: $input-icon-col;
+    font-size: rem(18);
+    line-height: rem(18);
+    top: 50%;
+    right: rem(8);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  > .form-control {
+    padding-right: rem(28) !important;
+  }
+}
+
+// .select-wrapper:focus-within + .label--top {
+//   color: $label--focus-col;
+// }

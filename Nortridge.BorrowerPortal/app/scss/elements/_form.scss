@@ -1,0 +1,103 @@
+.form__wrapper__entry {
+  background-color: $form-wrapper-bg-col;
+  border-radius: $border-rad-regular;
+  box-shadow: $form-wrapper-shadow;
+  border: $form-wrapper-border;
+  padding: rem(20);
+  margin-left: rem(8);
+  margin-right: rem(8);
+}
+
+.form__row--custom {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-right: rem(-8);
+  margin-left: rem(-8);
+
+  & > .form-group {
+    flex: 1;
+    position: relative;
+    padding-right: rem(8);
+    padding-left: rem(8);
+  }
+
+  .label--top {
+    position: absolute;
+    font-size: $font-sm-size;
+    color: $input-label-col;
+    margin: 0;
+    padding: 0 rem(4);
+    left: 1rem;
+    top: rem(-7);
+    background-color: $input-bg-col;
+    z-index: 9;
+  }
+
+  .form-control--custom {
+    box-sizing: border-box;
+    font-size: rem(12);
+    min-height: rem(37);
+    color: $input-text-col;
+    border-color: $input-border-col;
+    transition: $transition-regular;
+    border-radius: $border-rad-regular;
+
+    &:focus {
+      border: 2px solid $input-border-focus-col;
+      box-shadow: none;
+      background-color: $input-bg-focus-col;
+      + .label--top {
+        color: $input-label--focus-col;
+      }
+    }
+    &__data {
+      border-right: none;
+      padding-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+
+      &:focus {
+        border-right: none;
+      }
+    }
+  }
+}
+
+// Custom input sizes
+.field__state {
+  max-width: rem(110);
+}
+.field__zip {
+  max-width: rem(100);
+}
+
+.table__input {
+  box-sizing: border-box;
+  max-width: rem(185);
+  font-size: rem(12);
+  min-height: rem(37);
+  color: $input-text-col;
+  border-color: $input-border-col;
+  transition: $transition-regular;
+  border-radius: $border-rad-regular;
+
+  &:focus {
+    background-color: $input-bg-col;
+    border: none;
+    outline: 0;
+    box-shadow: $input-boxshadow;
+  }
+
+  &.input-validation-error {
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+
+.form--flexible {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+}

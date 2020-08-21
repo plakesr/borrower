@@ -1,0 +1,91 @@
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: $font-default;
+  font-weight: 400;
+  color: $text-regular-col;
+
+}
+
+.main__wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: $font-reg-size;
+  background-color: $body-bg-col;
+
+
+  &--entry {
+    display: flex;
+    align-items: center;
+    background-color: $body-login-bg-col;
+  }
+}
+
+.main__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &--entry {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: rem(588);
+    margin: auto;
+  }
+}
+
+main {
+  display: flex;
+  flex: 1;
+  height: 100%;
+
+}
+
+
+//////////////////////
+.text--error {
+  font-size: $font-reg-size;
+  color: $red-alert;
+  height: 1.5rem;
+  ul {
+    display: flex;
+  }
+}
+
+.text--error.register {
+    padding-top: 0.6rem;
+}
+
+.text--help {
+  color: $body-text-reg-col;
+}
+
+.page__title {
+  font-size: rem(18);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.alert {
+  border-radius: $border-rad-regular;
+
+  &-warning {
+    color: $red-alert;
+  }
+}
+
+
+
+/////////////////////////
+.card__custom {
+  padding: 1rem;
+  background-color: $card-bg-col;
+  border-radius: $border-rad-regular;
+  box-shadow: $card-shadow;
+  margin: 1rem 0 1rem rem(2) ;
+}

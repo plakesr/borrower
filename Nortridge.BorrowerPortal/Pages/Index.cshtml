@@ -1,0 +1,42 @@
+﻿@page
+@model IndexModel
+
+<div class="content__wrapper--lg">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Balances"]</h2>
+
+    <div class="table-responsive table-wrapper custom-scroll">
+        <table class="table table--custom table__head--fixed rounded-corners row-border js-dt-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Localizer["Loan Number"]</th>
+                    <th>@Localizer["Nickname"]</th>
+                    <th>@Localizer["Maturity Date"]</th>
+                    <th class="text-right">@Localizer["Note Amount"]</th>
+                    <th class="text-right">@Localizer["Payoff Balance"]</th>
+                    <th class="text-right">@Localizer["Past Due"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var loan in Model.Loans)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn__text" asp-page="/Balances/Details/Index" asp-route-loanId="@loan.Id">@Localizer["Choose"]</a>
+                        </td>
+                        <td>@loan.Number</td>
+                        <td>@loan.Nickname</td>
+                        <td>@loan.MaturityDate.ToShortDate()</td>
+                        <td class="text-right"><price value="loan.NoteAmount"></price></td>
+                        <td class="text-right"><price value="loan.PayoffBalance"></price></td>
+                        <td class="text-right"><price value="loan.PastDue"></price></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <a asp-page="/Nicknames/Index" class="btn btn__text mt-1">@Localizer["Edit Nicknames"]</a>
+</div>

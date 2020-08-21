@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+
+<div class="content__wrapper--mid">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Security Settings"]</h2>
+
+    <p>@Localizer["Select security questions from the list of available questions and enter your answers."]</p>
+    <form class="form--flexible" method="post">
+        <div class="form__row--custom">
+            <div class="form-group">
+                <div class="select-wrapper">
+                    <select class="form-control form-control--custom"
+                            asp-items="Model.SecurityQuestions.Questions1"
+                            asp-for="SecurityQuestions.Question1"></select>
+                </div>
+                <label class="label--top" asp-for="SecurityQuestions.Question1">@Localizer["Security Question 1"]</label>
+            </div>
+        </div>
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input type="text" class="form-control form-control--custom" asp-for="SecurityQuestions.Answer1" maxlength="255" />
+                <label class="label--top" asp-for="SecurityQuestions.Answer1">@Localizer["Answer 1"]</label>
+            </div>
+        </div>
+        <div class="form__row--custom">
+            <div class="form-group">
+                <div class="select-wrapper">
+                    <select class="form-control form-control--custom"
+                            asp-items="Model.SecurityQuestions.Questions2"
+                            asp-for="SecurityQuestions.Question2"></select>
+                </div>
+                <label class="label--top" asp-for="SecurityQuestions.Question2">@Localizer["Security Question 2"]</label>
+            </div>
+        </div>
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input type="text" class="form-control form-control--custom" asp-for="SecurityQuestions.Answer2" maxlength="255"/>
+                <label class="label--top" asp-for="SecurityQuestions.Answer2">@Localizer["Answer 2"]</label>
+            </div>
+        </div>
+        <span class="text-danger">@Html.ValidationSummary(false)</span>
+        <button class="btn btn__solid mx-0 mt-2" type="submit">@Localizer["Submit"]</button>
+    </form>
+
+    @if (Model.RecordLocked)
+    {
+    <vc:record-locked></vc:record-locked>
+    }
+    @if (Model.Successful)
+    {
+    <div class="alert alert-success mt-2">@Localizer["Sequrity questions have been successfully changed."]</div>
+    }
+</div>

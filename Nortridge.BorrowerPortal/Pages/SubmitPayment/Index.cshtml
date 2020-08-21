@@ -1,0 +1,53 @@
+﻿@page
+@using Nortridge.BorrowerPortal.Core.UseCases.Loan.Payment
+@model IndexModel
+
+<div class="content__wrapper--lg">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Make a Payment"]</h2>
+    @if (Model.Form.Step == PayixStep.InitialStep)
+    {
+        <partial name="_SubmitPayment" model="Model.Form.Payment" />
+    }
+    @if (Model.RecordLocked)
+    {
+        <vc:record-locked></vc:record-locked>
+    }
+    else if (Model.CreatedPayment.HasValue())
+    {
+        <div class="alert alert-success mt-2 js-alert-message">@Model.CreatedPayment @Localizer["was created"]</div>
+    }
+
+    @if (Model.Form.PayType == PayType.WebPay && Model.Form.Step == PayixStep.InitialStep)
+    {
+        <div id="web-pay" data-url="@Model.Form.WebPayUrl"></div>
+    }
+    else if (Model.Form.Step != PayixStep.InitialStep)
+    {
+        @* Temporary hack. The API doesn't provide type of merchant *@
+
+        if (Model.Form.Step == PayixStep.SetupAmount)
+        {
+            <partial name="Payix/_SetupAmount" model="Model.Form.PayixPaymentSetupAmount" />
+        }
+        else if (Model.Form.Step == PayixStep.GetCardList)
+        {
+            <partial name="Payix/_CardsList" model="Model.Form.PayixPaymentCardsList" />
+        }
+        else if (Model.Form.Step == PayixStep.AddCard)
+        {
+            <partial name="Payix/_AddCards" model="Model.Form.PayixPaymentAddCards" />
+        }
+        else if (Model.Form.Step == PayixStep.Successful)
+        {
+            <p>@Localizer["Payment is successful"]</p>
+        }
+    }
+
+    @if (Model.Form.PayType == PayType.Nothing && Model.Form.Payment.Method == SubmitPaymentMethod.Card)
+    {
+        <div class="alert alert-warning mt-2 js-alert-message">@Localizer["Web pay is not active on this loan."]</div>
+    }
+</div>
+

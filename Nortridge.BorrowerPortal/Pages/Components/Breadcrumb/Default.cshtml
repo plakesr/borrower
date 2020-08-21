@@ -1,0 +1,10 @@
+﻿@model IReadOnlyCollection<Nortridge.BorrowerPortal.Infrastructure.Breadcrumbs.BreadcrumbModel>
+
+<ul class="bread-crumbs">
+    @foreach (var item in Model)
+    {
+        <li class="bread-crumbs__item">
+            <a class="btn__text--link" asp-page="@item.Path">@Localizer[item.Name]</a>
+        </li>
+    }
+</ul>

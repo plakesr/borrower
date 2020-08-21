@@ -1,0 +1,106 @@
+﻿$white: #FFFFFF;
+$white-dark: #FAFAFA;
+$black: var(--black-col);
+
+$blue-dark: #003D6D;
+$blue-dark-2: #3C4B5F;
+$blue-light: #e8f7fd;
+$blue-accent: #2a7d9c;
+$blue-royal: var(--blue-royal-col);
+$blue-black: var(--blue-black-col);
+$blue-sky: var(--blue-sky-col);
+$orange-accent: #FDBA12;
+
+$red-alert: #FF0000;
+
+$grey:#808080;
+$grey-dark: var(--grey-dark-col);
+$grey-light: #ADADAD;
+$grey-light-2: #CCCCCC;
+$grey-light-3: #D5D5D5;
+$grey-light-4: var(--grey-light-4-col);
+$grey-light-5: var(--grey-light-4-col);
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+$transition-regular: all .25s ease;
+$border-rad-regular: rem(2);
+
+$border-regular: 1px solid $grey-light;
+$border-input: 1px solid $grey;
+
+////////////////
+$font-default: "OpenSans", Arial, sans-serif;
+$font-logo: "AdobeGaramondPro", Constantia, "Times New Roman", Times,serif;
+$font-md-size: rem(14);
+$font-reg-size: rem(12);
+$font-sm-size: rem(10);
+
+/////////////////
+$divider-col: $grey-light-2;
+
+$text-regular-col: var(--text-regular-col);
+
+$body-bg-col: var(--body-bg-col);
+$body-login-bg-col: var(--body-login-bg-col);
+$body-text-reg-col: var(--body-text-reg-col);
+
+$header-bg-col: $white;
+$header-text-col: $white;
+$header-login-bg-col: var(--header-login-bg-col);
+$header-login-text-col: var(--header-login-text-col);
+$header-regular-bg-col: $blue-dark;
+$header-regular-text-col: $grey-light-3;
+
+$form-wrapper-bg-col: var(--form-wrapper-bg-col);
+$form-wrapper-border: var(--form-wrapper-border);
+$form-wrapper-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+
+$input-bg-col: var(--input-bg-col);
+$input-border-col: $grey;
+$input-label-col: $grey;
+$input-text-col: var(--input-text-col);
+$input-icon-col: var(--input-icon-col);
+$input-border-focus-col: var(--input-border-focus-col);
+$input-bg-focus-col: var(--input-bg-focus-col);
+$input-label--focus-col: var(--input-label--focus-col);
+$input-placeholder-default-col: $grey;
+$input-boxshadow: var(--input-boxshadow);
+
+$btn-text-col: var(--btn-text-col);
+$btn-solid-col: var(--btn-solid-col);
+$btn-bg-col: var(--btn-bg-col);
+$btn-link-col: var(--btn-link-col);
+$btn-bg-hover-col: var(--btn-bg-hover-col);
+$btn-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.3);
+
+$check-text-col: $white;
+$check-bg-col: $white;
+$check-checked-bg-col: var(--check-checked-bg-col);
+
+$header-nav-col: $grey-light-3;
+$header-accent-col: $orange-accent;
+$header-account-col: $grey-light;
+
+$sidebar-text-col: var(--sidebar-text-col);
+$sidebar-bg-col: var(--sidebar-bg-col);
+$sidebar-text-active-col: var(--sidebar-text-active-col);
+
+$crumbs-text-col:$grey;
+
+$table-border-col: $grey;
+$table-text-col: var(--table-text-col);
+$table-row-border-col: $grey-light-2;
+$table-head-bg-col: var(--table-head-bg-col);
+$table-head-text-col: var(--table-head-text-col);
+$table-row-marked-bg: var(--table-row-marked-bg);
+
+$dropdown-border-col: $grey-light-3;
+$dropdown-bg-col: var(--dropdown-bg-col);
+$item-shadow: $grey-light-2;
+
+$card-bg-col: var(--card-bg-col);
+$card-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.3);

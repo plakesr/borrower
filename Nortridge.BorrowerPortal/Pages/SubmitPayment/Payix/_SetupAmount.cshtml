@@ -1,0 +1,35 @@
+﻿@using Nortridge.BorrowerPortal.Core.UseCases.Loan.Payment
+@model PayixPaymentSetupAmountViewModel
+
+<p></p>
+<p></p>
+Loan: <p>@Model.Common.NickName</p>
+<p></p>
+<p></p>
+<form class="form--flexible" method="post" asp-page-handler="">
+    <div class="content__wrapper--sm">
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input asp-for="Amount" price-input optional="true" />
+                <label class="label--top">
+                    @Localizer["Payment Amount"]
+                </label>
+            </div>
+        </div>
+        <div class="form__row--custom">
+            <div class="form-group mb-0">
+                <input class="form-control form-control--custom" asp-for="Reference" />
+                <label class="label--top">
+                    @Localizer["Reference"]
+                </label>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn__solid mx-0 mt-2" type="submit" asp-page-handler="PayixSubmitPayment">
+        @Localizer["Submit"]
+    </button>
+
+    <input type="hidden" asp-for="Common.LoanId" />
+    <input type="hidden" asp-for="Common.NickName" />
+    <input type="hidden" asp-for="Common.Token" />
+</form>

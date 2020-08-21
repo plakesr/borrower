@@ -1,0 +1,46 @@
+﻿@page
+﻿@using LanguageExt.UnsafeValueAccess
+@using Nortridge.BorrowerPortal.Core.UseCases.Account
+@model IndexModel
+@{
+    Layout = PageContants.LayoutAnonymous;
+}
+
+<div class="form__wrapper__entry">
+    <h2 class="page__title">@Localizer["Forgot Password"]</h2>
+
+    @if (Model.Result.IsSome)
+    {
+        var error = Model.Result.ValueUnsafe();
+
+        <div class="alert alert-warning mt-2">
+            @if (error.Type == ForgotPasswordErrorType.AccountNotSetup)
+            {
+                @Localizer["Account not setup, click "]
+                <a asp-page="/Account/Register/Index">@Localizer["here"]</a>
+                @Localizer[" to create account"]
+            }
+            else if (error.Type == ForgotPasswordErrorType.MailNotSent)
+            {
+                @Localizer["Try later."]
+            }
+            else
+            {
+                @error.Message
+            }
+        </div>
+    }
+
+    <form method="post">
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input asp-for="Form.Email" class="form-control form-control--custom" />
+                <label asp-for="Form.Email" class="label--top">@Localizer["Email"]</label>
+            </div>
+        </div>
+
+        <button class="btn btn__solid float-right m-0" type="submit">@Localizer["Submit"]</button>
+    </form>
+</div>
+
+<a asp-page="/Account/Login/Index" class="btn btn__text mt-2 ml-2">@Localizer["Back"]</a>

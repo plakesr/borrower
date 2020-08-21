@@ -1,0 +1,41 @@
+﻿@using Nortridge.BorrowerPortal.Core.UseCases.Loan.Payment
+@model PayixPaymentCardsListViewModel
+
+<p></p>
+<p></p>
+Loan: <p>@Model.Common.NickName</p>
+<p></p>
+@if (Model.ErrorMessage != null)
+{
+    <div style="color:red;">@Localizer[Model.ErrorMessage]</div>
+}
+<p></p>
+<form class="form--flexible" method="post" asp-page-handler="">
+    <div class="content__wrapper--sm">
+        <div class="form__row--custom">
+            <div class="form-group">
+                <div class="select-wrapper">
+                    <select id="saaa" class="form-control form-control--custom"
+                            asp-for="Common.Token"
+                            asp-items="Model.CreditCards"></select>
+                </div>
+                <label class="label--top" for="saaa">@Localizer["Select card"]</label>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn__solid mx-0 mt-2" type="submit" asp-page-handler="PayixSetupAmount">
+        @Localizer["Submit"]
+    </button>
+
+    <p></p>
+    <p></p>
+    <p>Or</p>
+    <p></p>
+    <p></p>
+    <button class="btn btn__solid mx-0 mt-2" type="submit" asp-page-handler="PayixAddNewCard">
+        @Localizer["Add new card"]
+    </button>
+
+    <input type="hidden" asp-for="Common.LoanId" />
+    <input type="hidden" asp-for="Common.NickName" />
+</form>

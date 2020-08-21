@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+
+<div class="content__wrapper--lg">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Loan Nicknames"]</h2>
+
+    @if (Model.Saved)
+    {
+        <div class="alert alert-warning mt-2 js-alert-message">@Localizer["Nicknames have been saved successfully."]</div>
+    }
+    <form class="form--flexible" method="post">
+        <div class="table-responsive table-wrapper custom-scroll">
+            <table class="table table--custom table__head--fixed rounded-corners row-border js-dt-table">
+                <thead>
+                    <tr>
+                        <th>@Localizer["Loan Number"]</th>
+                        <th>@Localizer["Account Description"]</th>
+                        <th>@Localizer["Nickname"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var index = 0; index < Model.Loans.Length; index++)
+                    {
+                        <tr>
+                            <td>@Model.Loans[index].LoanNumber</td>
+                            <td>@Model.Loans[index].AccountDescription</td>
+                            <td>
+                                <input asp-for="Loans[index].LoanId" />
+                                <input class="form-control form-control--custom table__input" asp-for="Loans[index].Nickname" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <button class="btn btn__solid mx-0 mt-4" type="submit">@Localizer["Apply changes"]</button>
+    </form>
+
+    @if (Model.RecordLocked)
+    {
+        <vc:record-locked></vc:record-locked>
+    }
+</div>

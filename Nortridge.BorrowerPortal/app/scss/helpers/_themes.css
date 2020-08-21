@@ -1,0 +1,108 @@
+@media (prefers-color-scheme: dark) {
+	:root {
+		--white-col: #FFFFFF;
+		--black-col: #1A1A1A;
+		--blue-royal-col: #001B3C;
+		--blue-black-col: #11242C;
+		--blue-sky-col: #7BBAFF;
+		--grey-dark-col: #333333;
+		--grey-light-2-col: #CCCCCC;
+		--grey-light-3-col: #D5D5D5;
+		--grey-light-4-col: #E6E6E6;
+		--grey-light-5-col: #B3B3B3;
+
+		--text-regular-col: var(--grey-light-4-col);
+
+		--body-bg-col: var(--grey-dark-col);
+		--body-login-bg-col: var(--black-col);
+		--body-text-reg-col: var(--text-regular-col);
+
+		--header-login-bg-col: var(--black-col);
+		--header-login-text-col: var(--text-regular-col);
+
+		--form-wrapper-bg-col: var(--grey-dark-col);
+		--form-wrapper-border: 1px solid #ADADAD;
+
+		--input-bg-col: var(--grey-dark-col);
+		--input-text-col: var(--white-col);
+		--input-icon-col: var(--grey-light-3-col);
+		--input-border-focus-col: var(--grey-dark-col);
+		--input-bg-focus-col: var(--grey-dark-col);
+		--input-label--focus-col: var(--blue-sky-col);
+		--input-boxshadow: 0 0 0 2px rgba(123, 186, 255, 1);
+
+		--btn-text-col: var(--grey-dark-col);
+		--btn-solid-col: var(--blue-sky-col);
+		--btn-bg-col: var(--blue-sky-col);
+		--btn-link-col: var(--blue-sky-col);
+		--btn-bg-hover-col: var(--blue-sky-col);
+
+		--check-checked-bg-col: var(--blue-sky-col);
+
+		--sidebar-text-col: var(--grey-light-5-col);
+		--sidebar-bg-col: var(--blue-royal-col);
+		--sidebar-text-active-col: var(--blue-sky-col);
+
+		--table-text-col: var(--grey-light-2-col);
+		--table-head-bg-col: var(--blue-black-col);
+		--table-head-text-col: #E6E6E6;
+		--table-row-marked-bg: var(--black-col);
+
+		--dropdown-bg-col: var(--grey-light-2-col);
+
+		--card-bg-col: #3a3a3a;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--white-col: #FFFFFF;
+		--white-dark: #FAFAFA;
+		--black-col: #000000;
+		--grey-dark-col: #4D4D4D;
+		--blue-dark-col: #003D6D;
+		--blue-dark-2-col: #3C4B5F;
+		--blue-light-col: #e8f7fd;
+
+		--text-regular-col: var(--black-col);
+
+		--body-bg-col: var(--white-col);
+		--body-login-bg-col: var(--white-dark);
+		--body-text-reg-col: var(--grey-dark-col);
+
+		--header-login-bg-col: var(--white-dark);
+		--header-login-text-col: var(--blue-dark-col);
+
+		--form-wrapper-bg-col: var(--white-col);
+		--form-wrapper-border: 1px solid #e6e6e6;
+
+		--input-bg-col: var(--white-col);
+		--input-text-col: var(--black-col);
+		--input-icon-col: #495057;
+		--input-border-focus-col: var(--blue-dark-col);
+		--input-bg-focus-col: var(--white-col);
+		--input-label--focus-col: var(--blue-dark-col);
+		--input-boxshadow: 0 0 0 2px rgba(0, 61, 109, 1);
+
+		--btn-text-col: var(--white-col);
+		--btn-solid-col: var(--blue-dark-col);
+		--btn-bg-col: var(--blue-dark-col);
+		--btn-link-col: var(--blue-dark-col);
+		--btn-bg-hover-col: var(--blue-light-col);
+
+		--check-checked-bg-col: var(--blue-dark-col);
+
+		--sidebar-text-col: var(--grey-dark-col);
+		--sidebar-bg-col: var(--blue-light-col);
+		--sidebar-text-active-col: var(--blue-dark-col);
+
+		--table-text-col: var(--grey-dark-col);
+		--table-head-bg-col: var(--blue-dark-2-col);
+		--table-head-text-col: var(--white-dark);
+		--table-row-marked-bg: var(--blue-light-col);
+
+		--dropdown-bg-col: var(--white-col);
+
+		--card-bg-col: var(--white-col);
+	}
+}

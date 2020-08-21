@@ -1,0 +1,48 @@
+.balance-details {
+  display: flex;
+
+  &__column {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border-right: $border-regular;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    > div {
+      line-height: rem(40);
+      display: flex;
+      justify-content: space-between;
+
+     span:first-child {
+        font-weight: 600;
+      }
+    }
+
+    .blank-field {
+      height: rem(40);
+    }
+  }
+}
+
+@media (max-width: $md) {
+
+  .balance-details {
+    flex-wrap: wrap;
+
+    &__column {
+      flex: 1 0 400px;
+      border-right: none;
+      border-bottom: $border-regular;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .blank-field {
+      height: auto;
+    }
+  }
+}

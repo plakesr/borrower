@@ -1,0 +1,71 @@
+﻿@page
+@model IndexModel
+
+<div class="content__wrapper--lg page__pending">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Pending Payments"]</h2>
+
+    <div class="input__wrapper--md">
+
+        <form method="post">
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <div class="select-wrapper">
+                        <select class="form-control form-control--custom"
+                                asp-for="PendingPayments.LoanId"
+                                asp-items="Model.PendingPayments.Loans"
+                                submit></select>
+                    </div>
+                    <label class="label--top">@Localizer["Loan Number"]</label>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="table-responsive table-wrapper custom-scroll">
+        <table class="page__payment__table table table--custom table__head--fixed table__row--slim  rounded-corners js-dt-table">
+            <thead>
+                <tr>
+                    <th>@Localizer["Executed On"]</th>
+                    <th>@Localizer["Effective On"]</th>
+                    <th class="page__payment__table__type">@Localizer["Trans type"]</th>
+                    <th class="text-right">@Localizer["Trans Amount"]</th>
+                    <th class="text-right">@Localizer["Payment method"]</th>
+                    <th>@Localizer["Payment Reference"]</th>
+                    <th>@Localizer["User Def#1"]</th>
+                    <th>@Localizer["User Def#2"]</th>
+                    <th>@Localizer["User Def#3"]</th>
+                    <th>@Localizer["User Def#4"]</th>
+                    <th>@Localizer["User Def#5"]</th>
+                    <th>@Localizer["User Reference"]</th>
+                    <th>@Localizer["ACH Batch No"]</th>
+                    <th>@Localizer["ACH Trace Number"]</th>
+                </tr>
+            </thead>
+            @for (var index = 0; index < Model.PendingPayments.Items.Count; index++)
+            {              
+                var groupClass = index.Even() ? "_even" : string.Empty;
+                var item = Model.PendingPayments.Items[index];
+
+                <tr class="@groupClass">
+                    <td>@item.ExecutionDate.ToShortDate()</td>
+                    <td>@item.EffectiveDate.ToShortDate()</td>
+                    <td>@item.TypeDescription</td>
+                    <td class="text-right"><price value="item.Amount"></price></td>
+                    <td class="text-right">@item.PaymentMethod</td>
+                    <td>@item.PaymentReference</td>
+                    <td>@item.UserDef1</td>
+                    <td>@item.UserDef2</td>
+                    <td>@item.UserDef3</td>
+                    <td>@item.UserDef4</td>
+                    <td>@item.UserDef5</td>
+                    <td>@item.UserReference</td>
+                    <td>@item.ACHBatchNumber</td>
+                    <td>@item.ACHTraceNumber</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

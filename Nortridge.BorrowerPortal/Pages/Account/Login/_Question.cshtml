@@ -1,0 +1,29 @@
+﻿@model SecurityQuestionViewModel
+
+<h2 class="page__title">@Localizer["Security Challenge Question"]</h2>
+
+<p>@Localizer["Please verify your identity"]</p>
+<form method="post" asp-page-handler="">
+    <span>@Localizer["Username"]</span>&nbsp;<span>@Model.Username</span>
+    <p>@Model.Question</p>
+
+    <div class="form-group mb-0">
+        <input asp-for="Answer" class="form-control form-control--custom" />
+        <label asp-for="Answer" class="label--top">@Localizer["Answer"]</label>
+    </div>
+
+    <input type="hidden" asp-for="Username" />
+    <input type="hidden" asp-for="HintNumber" />
+
+    <button class="btn btn__solid" type="submit" asp-page-handler="Answer">@Localizer["Submit"]</button>
+
+    <div class="checkbox d-block mt-2">
+        <label class="m-0">
+            <input type="checkbox" asp-for="AlwaysTrust">
+            <span class="cr">
+                <i class="cr-icon icon-check"></i>
+            </span>
+            <span>@Localizer["Always trust this computer when logging in"]</span>
+        </label>
+    </div>
+</form>

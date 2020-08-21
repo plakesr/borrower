@@ -1,0 +1,66 @@
+﻿@page
+@model IndexModel
+
+<div class="content__wrapper--mid">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Change of Address"]</h2>
+
+    @if (Model.Saved)
+    {
+        <div class="alert alert-warning mt-2 js-alert-message">@Localizer["Address has been saved successfully."]</div>
+    }
+
+    <form class="form--test" method="post">
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input class="form-control form-control--custom" asp-for="Form.Street1" />
+                <label class="label--top" asp-for="Form.Street1">@Localizer["Address Line 1"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input class="form-control form-control--custom" asp-for="Form.Street2" />
+                <label class="label--top" asp-for="Form.Street2">@Localizer["Address Line 2"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input class="form-control form-control--custom" asp-for="Form.City" />
+                <label class="label--top" asp-for="Form.City">@Localizer["City"]</label>
+            </div>
+            <div class="form-group field__state">
+                <input class="form-control form-control--custom" asp-for="Form.State" />
+                <label class="label--top" asp-for="Form.State">@Localizer["State"]</label>
+            </div>
+            <div class="form-group field__zip">
+                <input class="form-control form-control--custom" asp-for="Form.Zip"
+                       title="@Model.Form.Zip" />
+                <label class="label--top" asp-for="Form.Zip">@Localizer["Zip"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input class="form-control form-control--custom" asp-for="Form.County" />
+                <label class="label--top" asp-for="Form.County">@Localizer["County"]</label>
+            </div>
+        </div>
+
+        <div class="form__row--custom">
+            <div class="form-group">
+                <input class="form-control form-control--custom" asp-for="Form.Country" />
+                <label class="label--top" asp-for="Form.Country">@Localizer["Country"]</label>
+            </div>
+        </div>
+
+        <button class="btn btn__solid mx-0 mt-2" type="submit">@Localizer["Submit address change"]</button>
+    </form>
+
+    @if (Model.RecordLocked)
+    {
+        <vc:record-locked></vc:record-locked>
+    }
+</div>

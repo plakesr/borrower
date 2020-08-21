@@ -1,0 +1,119 @@
+﻿@using Nortridge.BorrowerPortal.Core.UseCases.Loan.Payment
+@model SubmitPaymentViewModel
+
+@{
+    var checkHidden = Model.Method == SubmitPaymentMethod.Check ? string.Empty : "hidden";
+}
+
+<form class="form--flexible" method="post" asp-page-handler="">
+
+    <div class="content__wrapper--sm">
+        <div class="form__row--custom">
+            <div class="form-group">
+                <div class="select-wrapper">
+
+                    <select class="form-control form-control--custom"
+                            asp-for="LoanId"
+                            asp-items="Model.Loans"></select>
+                </div>
+                <label class="label--top" asp-for="LoanId">@Localizer["Loan Number"]</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="radio ml-1">
+        <label class="col-form-label">
+            <input type="radio" value="@SubmitPaymentMethod.Card"
+                   id="Method-@nameof(SubmitPaymentMethod.Card)"
+                   class="js-radio-toggler"
+                   data-target="#submit-payment__webpay"
+                   asp-for="Method" />
+            <span class="cr">
+                <i class="cr-icon"></i>
+            </span>
+            @Localizer["Credit / Debit Card"]
+        </label>
+    </div>
+    <div style="color:red;">@Localizer["The web pay form will open in another window. It may be necesary to enable pop ups to view the form."]</div>
+    <div style="color:red;">@Localizer["The Payix form will open in the current window."]</div>
+
+    <div class="radio ml-1">
+        <label class="col-form-label">
+            <input type="radio" value="@SubmitPaymentMethod.Check"
+                   id="Method-@nameof(SubmitPaymentMethod.Check)"
+                   class="js-radio-toggler"
+                   data-target="#submit-payment__check"
+                   asp-for="Method" />
+            <span class="cr">
+                <i class="cr-icon "></i>
+            </span>
+            @Localizer["Check"]
+        </label>
+    </div>
+
+    <div class="card card__custom" id="submit-payment__check" @checkHidden>
+
+        <h2 class="page__title">@Localizer["One-Time Check Payment"]</h2>
+
+        <div class="d-flex flex-wrap align-items-center mb-3">
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <input asp-for="CheckAmount" price-input optional="true" />
+                    <label class="label--top" asp-for="CheckAmount">
+                        @Localizer["Payment Amount"]
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control--custom" asp-for="TodaysDate" disabled />
+                    <label class="label--top" for="TodaysDate">
+                        @Localizer["Today's date"]
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap align-items-center mb-3">
+            <div class="content__wrapper--sm">
+                <div class="form__row--custom">
+                    <div class="form-group mb-0">
+                        <input class="form-control form-control--custom" asp-for="CheckABANumber" />
+                        <label class="label--top">
+                            @Localizer["ABA/Routing Number"]
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="CheckABANumber" class="text-danger ml-3"></span>
+        </div>
+
+        <div class="content__wrapper--sm">
+
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <input class="form-control form-control--custom" asp-for="CheckAccountNumber" />
+                    <label class="label--top">
+                        @Localizer["Account Number"]
+                    </label>
+                </div>
+            </div>
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <input class="form-control form-control--custom" asp-for="CheckNumber" />
+                    <label class="label--top">
+                        @Localizer["Check Number"]
+                    </label>
+                </div>
+            </div>
+            <div class="form__row--custom">
+                <div class="form-group mb-0">
+                    <div class="select-wrapper">
+                        <select class="form-control form-control--custom" asp-for="AccountType" asp-items="Model.AccountTypes"></select>
+                    </div>
+                    <label class="label--top" asp-for="AccountType">@Localizer["Account Type"]</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn__solid mx-0 mt-2" type="submit">
+        @Localizer["Submit"]
+    </button>
+</form>

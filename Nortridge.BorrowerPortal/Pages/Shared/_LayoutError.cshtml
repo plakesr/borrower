@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BorrowerPortal</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/dist/main.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/dist/main.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+
+    <div class="main__wrapper">
+        <div class="main__content">
+
+            <vc:header></vc:header>
+
+            <main class="main">
+                
+                @RenderBody()
+            </main>
+            @{
+                var version = typeof(Program).Assembly.GetName().Version;
+                var buildDateTime = new DateTime(2000, 1, 1).Add(new TimeSpan(
+                TimeSpan.TicksPerDay * version.Build + // days since 1 January 2000
+                TimeSpan.TicksPerSecond * 2 * version.Revision)); // seconds since midnight, (multiply by 2 to get original)
+            }
+            <div class="text-white small text-center">@version&nbsp;@buildDateTime</div>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <script src="~/dist/vendors.js"></script>
+        <script src="~/dist/main.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/dist/vendors.js" asp-append-version="true"></script>
+        <script src="~/dist/main.js" asp-append-version="true"></script>
+    </environment>
+</body>
+</html>

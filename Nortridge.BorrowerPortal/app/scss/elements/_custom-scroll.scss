@@ -1,0 +1,14 @@
+.custom-scroll {
+  &::-webkit-scrollbar {
+    width: rem(7);
+    height: rem(7);
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $grey;
+    cursor: initial;
+  }
+}

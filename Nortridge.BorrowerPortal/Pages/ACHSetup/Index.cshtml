@@ -1,0 +1,145 @@
+﻿@page
+@using Nortridge.BorrowerPortal.Core.UseCases.Loan.AutomatedPayment
+@model IndexModel
+
+<div class="content__wrapper--lg">
+    <vc:breadcrumb current="null"></vc:breadcrumb>
+
+    <h2 class="page__title">@Localizer["Automatic Payment Setup"]</h2>
+
+    <form class="form--flexible" method="post" asp-page-handler="">
+
+        <div class="content__wrapper--sm">
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <div class="select-wrapper">
+                        <select class="form-control form-control--custom" asp-for="AutomatedPayment.LoanId" asp-items="Model.AutomatedPayment.Loans" submit>
+                        </select>
+                    </div>
+                    <label class="label--top" asp-for="AutomatedPayment.LoanId">@Localizer["Loan Number"]</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap align-items-center mb-3">
+            <div class="content__wrapper--sm">
+                <div class="form__row--custom">
+                    <div class="form-group mb-0">
+                        <input class="form-control form-control--custom" asp-for="AutomatedPayment.ABANumber" />
+                        <label class="label--top" asp-for="AutomatedPayment.ABANumber">
+                            @Localizer["ABA / Routing Number"]
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="AutomatedPayment.ABANumber" class="text-danger ml-3"></span>
+        </div>
+
+        <div class="content__wrapper--sm">
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <input class="form-control form-control--custom" asp-for="AutomatedPayment.AccountNumber" />
+                    <label class="label--top" asp-for="AutomatedPayment.AccountNumber">
+                        @Localizer["Account Number"]
+                    </label>
+                </div>
+            </div>
+
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <input class="form-control form-control--custom" asp-for="AutomatedPayment.CheckNumber" />
+                    <label class="label--top" asp-for="AutomatedPayment.CheckNumber">
+                        @Localizer["Check Number"]
+                    </label>
+                </div>
+            </div>
+
+            <div class="form__row--custom">
+                <div class="form-group">
+                    <div class="select-wrapper">
+                        <select class="form-control form-control--custom" asp-for="AutomatedPayment.AccountType" asp-items="Model.AutomatedPayment.AccountTypes">
+                        </select>
+                    </div>
+                    <label class="label--top" asp-for="AutomatedPayment.AccountType">@Localizer["Account Type"]</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="radio ml-1">
+            <label class="col-form-label">
+                <input type="radio" value="@AutomatedPaymentSetupItem.AutoPaymentForAmountDue" id="SetupItem-@nameof(AutomatedPaymentSetupItem.AutoPaymentForAmountDue)" class="js-radio-toggler" asp-for="AutomatedPayment.SetupItem" />
+                <span class="cr">
+                    <i class="cr-icon"></i>
+                </span>
+                @Localizer["Setup Automatic Payment for Amount Due"]
+            </label>
+        </div>
+
+        <div class="radio ml-1 mb-3">
+            <label class="col-form-label">
+                <input type="radio" value="@AutomatedPaymentSetupItem.SpecificPaymentAmount" id="SetupItem-@nameof(AutomatedPaymentSetupItem.SpecificPaymentAmount)" class="js-radio-toggler" data-target="#ach-setup__specific-payment-amount" asp-for="AutomatedPayment.SetupItem" />
+                <span class="cr">
+                    <i class="cr-icon "></i>
+                </span>
+                @Localizer["Setup Specific Payment Amount"]
+            </label>
+        </div>
+
+        @{
+        var specificPaymentAmountHidden = Model.AutomatedPayment.SetupItem == AutomatedPaymentSetupItem.SpecificPaymentAmount ?
+        string.Empty :
+        "hidden";
+        }
+
+        <div class="card card__custom" id="ach-setup__specific-payment-amount" @specificPaymentAmountHidden>
+
+            <h2 class="page__title">@Localizer["Specific Payment Amount"]</h2>
+
+            <div class="content__wrapper--sm">
+                <div class="form__row--custom">
+                    <div class="form-group">
+                        <input price-input asp-for="AutomatedPayment.SpecificPaymentAmount" />
+                        <label class="label--top" asp-for="AutomatedPayment.SpecificPaymentAmount">
+                            @Localizer["Specified Payment Amount"]
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form__row--custom">
+                    <div class="form-group">
+                        <div class="select-wrapper">
+                            <select class="form-control form-control--custom" asp-for="AutomatedPayment.PaymentFrequency" asp-items="Model.AutomatedPayment.PaymentFrequencyList">
+                            </select>
+                        </div>
+                        <label class="label--top" asp-for="AutomatedPayment.PaymentFrequency">
+                            @Localizer["Payment Frequency"]
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form__row--custom">
+                    <div class="form-group mb-0">
+                        <date for="AutomatedPayment.NextPaymentDate" min="Model.AutomatedPayment.NextPaymentMinDate"></date>
+                        <label class="label--top" asp-for="AutomatedPayment.NextPaymentDate">
+                            @Localizer["Next Payment Date"]
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn__solid mx-0 mt-2" type="submit" asp-page-handler="Create">
+            @Localizer["Submit"]
+        </button>
+    </form>
+
+    @if (Model.RecordLocked)
+    {
+    <vc:record-locked></vc:record-locked>
+    }
+    else if (Model.CreatedAutomatedPayment.HasValue())
+    {
+    <div class="alert alert-success alert-message mt-2">@Model.CreatedAutomatedPayment @Localizer["was created"]</div>
+    }
+
+</div>

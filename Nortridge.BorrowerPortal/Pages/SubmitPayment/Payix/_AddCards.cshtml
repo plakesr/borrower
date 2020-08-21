@@ -1,0 +1,32 @@
+﻿@using Nortridge.BorrowerPortal.Core.UseCases.Loan.Payment
+@model PayixPaymentAddCardsViewModel
+
+<p></p>
+<p></p>
+Loan: <p>@Model.Common.NickName</p>
+<p></p>
+<p></p>
+
+<iframe id="payix" width="400px" height="300px" height="300px" frameborder="0" src="@Model.Url"></iframe>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        window.addEventListener('message', event => {
+            var data = event.data;
+            console.log(data);
+            $("#token").text(data.Token);
+        });
+    });
+</script>
+
+<form class="form--flexible" method="post" asp-page-handler="">
+    <button class="btn btn__solid mx-0 mt-2" type="submit" asp-page-handler="PayixSetupAmountNewCard">
+        @Localizer["Continue"]
+    </button>
+
+    <input type="hidden" asp-for="Common.LoanId" />
+    <input type="hidden" asp-for="Common.NickName" />
+    <input type="hidden" id="token" asp-for="Common.Token" />
+</form>
+
+

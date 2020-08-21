@@ -1,0 +1,82 @@
+ul,
+ul li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+}
+
+// antialiasing
+* {
+  text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+a {
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+
+textarea {
+  resize: none;
+}
+
+button:focus {
+  outline: 0 !important;
+}
+
+// Input style
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: $input-placeholder-default-col;
+}
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $input-placeholder-default-col;
+  opacity: 1;
+}
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $input-placeholder-default-col;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $input-placeholder-default-col;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $input-placeholder-default-col;
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: $input-placeholder-default-col;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input {
+  padding-left: rem(4);
+  padding-right: rem(4);
+}
+select {
+  appearance: none;
+  padding-right: 2.5rem !important;
+}

@@ -1,0 +1,33 @@
+.account__wrapper {
+  display: flex;
+  align-items: center;
+  font-family: $font-default;
+  font-weight: 600;
+
+}
+.account {
+  &__welcome {
+    position: relative;
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+    padding-right: 0.5rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      width: 1px;
+      height: 20px;
+
+      background-color: $header-nav-col;
+    }
+  }
+
+  &__name {
+    font-weight: 400;
+    color: $header-account-col;
+  }
+}

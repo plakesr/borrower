@@ -1,0 +1,37 @@
+.sidebar__main {
+  min-width: 12.5rem;
+  width: 15%;
+  border-right: $border-regular;
+  padding: rem(8);
+
+  .sidebar-item {
+     margin-top: rem(4);
+      &:first-child {
+        margin-top: 0;
+      }
+
+    .sidebar-link {
+      display: flex;
+      padding: rem(10);
+      padding-left: rem(24);
+      font-weight: 600;
+      color: $sidebar-text-col;
+      transition: $transition-regular;
+
+      &._active, &:hover{
+        color: $sidebar-text-active-col;
+        background-color: $sidebar-bg-col;
+      }
+
+      .sidebar__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        width: rem(20);
+        margin-right: rem(14);
+      }
+    }
+  }
+
+}
